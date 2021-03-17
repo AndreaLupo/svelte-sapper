@@ -1,5 +1,6 @@
 <script context="module">
 	export function preload({ params, query }) {
+		console.log('Preloading');
 		return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
 			return { posts };
 		});
@@ -7,7 +8,15 @@
 </script>
 
 <script>
+	import { onMount } from "svelte";
+
 	export let posts;
+
+	console.log('Executing on server');
+	onMount(() => {
+		console.log('Mounted on client!');
+		// fetch();
+	});
 </script>
 
 <style>
